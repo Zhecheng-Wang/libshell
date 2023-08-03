@@ -1,6 +1,6 @@
 #include "../../include/MidedgeAngleTanFormulation.h"
 #include <Eigen/Geometry>
-#include "../GeometryDerivatives.h"
+#include "../../include/GeometryDerivatives.h"
 #include "../../include/MeshConnectivity.h"
 #include <iostream>
 #include <random>

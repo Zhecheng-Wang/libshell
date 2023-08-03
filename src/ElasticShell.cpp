@@ -3,7 +3,7 @@
 #include <Eigen/Dense>
 #include <iostream>
 #include <Eigen/Sparse>
-#include "GeometryDerivatives.h"
+#include "../include/GeometryDerivatives.h"
 #include <random>
 #include <iostream>
 #include <vector>

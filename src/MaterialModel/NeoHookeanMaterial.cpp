@@ -1,7 +1,7 @@
 #include "../../include/NeoHookeanMaterial.h"
 #include "../../include/MeshConnectivity.h"
 #include <vector>
-#include "../GeometryDerivatives.h"
+#include "../../include/GeometryDerivatives.h"
 #include <Eigen/Dense>
 #include <iostream>
 #include "../../include/MidedgeAngleSinFormulation.h"

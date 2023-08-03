@@ -1,4 +1,4 @@
-#include "GeometryDerivatives.h"
+#include "../include/GeometryDerivatives.h"
 #include "../include/MeshConnectivity.h"
 #include <iostream>
 #include <random>

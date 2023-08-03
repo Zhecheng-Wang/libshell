@@ -1,7 +1,7 @@
 #include "../../include/StVKMaterial.h"
 #include "../../include/MeshConnectivity.h"
 #include <vector>
-#include "../GeometryDerivatives.h"
+#include "../../include/GeometryDerivatives.h"
 #include <Eigen/Dense>
 #include "../../include/MidedgeAngleSinFormulation.h"
 #include "../../include/MidedgeAngleTanFormulation.h"
