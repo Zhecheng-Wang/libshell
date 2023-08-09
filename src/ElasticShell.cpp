@@ -66,7 +66,8 @@ namespace LibShell {
 
         // stretching terms
         if (whichTerms & EnergyTerm::ET_STRETCHING)
-        {
+        {   
+            #pragma omp parallel for reduction(+:result)
             for (int i = 0; i < nfaces; i++)
             {
                 Eigen::Matrix<double, 1, 9> deriv;
@@ -74,11 +75,13 @@ namespace LibShell {
                 result += mat.stretchingEnergy(mesh, curPos, restState, i, derivative ? &deriv : NULL, hessian ? &hess : NULL);
                 if (derivative)
                 {
+                    #pragma omp critical
                     for (int j = 0; j < 3; j++)
                         derivative->segment<3>(3 * mesh.faceVertex(i, j)) += deriv.segment<3>(3 * j);
                 }
                 if (hessian)
                 {
+                    #pragma omp critical
                     for (int j = 0; j < 3; j++)
                     {
                         for (int k = 0; k < 3; k++)
@@ -100,6 +103,7 @@ namespace LibShell {
         if (whichTerms & EnergyTerm::ET_BENDING)
         {
             constexpr int nedgedofs = SFF::numExtraDOFs;
+            #pragma omp parallel for reduction(+:result)
             for (int i = 0; i < nfaces; i++)
             {
                 Eigen::Matrix<double, 1, 18 + 3 * nedgedofs> deriv;
@@ -107,6 +111,7 @@ namespace LibShell {
                 result += mat.bendingEnergy(mesh, curPos, extraDOFs, restState, i, derivative ? &deriv : NULL, hessian ? &hess : NULL);
                 if (derivative)
                 {
+                    #pragma omp critical
                     for (int j = 0; j < 3; j++)
                     {
                         derivative->segment<3>(3 * mesh.faceVertex(i, j)) += deriv.template block<1, 3>(0, 3 * j).transpose();
@@ -121,6 +126,7 @@ namespace LibShell {
                 }
                 if (hessian)
                 {
+                    #pragma omp critical
                     for (int j = 0; j < 3; j++)
                     {
                         for (int k = 0; k < 3; k++)
